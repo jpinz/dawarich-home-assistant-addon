@@ -52,12 +52,12 @@ options:
   smtp_authentication: "plain"
   smtp_starttls: true
 schema:
-  database_password: str
+  database_password: password
   time_zone: str
   application_hosts: str
   background_processing_concurrency: "int(1,20)"
   admin_email: str
-  admin_password: str
+  admin_password: password
   ha_tracked_entities: str
   ha_min_distance: "int(0,1000)"
   reverse_geocoding: bool
