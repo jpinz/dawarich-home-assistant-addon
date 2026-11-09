@@ -18,6 +18,8 @@ for kv in \
   "SELF_HOSTED=true" \
   "STORE_GEODATA=true" \
   "APPLICATION_PROTOCOL=http" \
+  "SIDEKIQ_EMBEDDED=true" \
+  "WEB_CONCURRENCY=0" \
   "RAILS_LOG_TO_STDOUT=true"; do
   key="${kv%%=*}"
   val="${kv#*=}"

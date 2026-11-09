@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.22.0-1
+
+- Upgrade the bundled Dawarich image from 1.15.3 to [1.22.0](https://github.com/Freika/dawarich/releases/tag/1.22.0), including releases 1.16.0–1.21.0
+- Run background jobs in the Rails app process as required by Dawarich 1.17; remove the now-obsolete separate Sidekiq service while keeping the configured worker concurrency
+- Back up the app before upgrading: the 1.19.0 database migration that preserves geofence events after place deletion cannot be rolled back. Several releases also queue background recalculations after upgrade; allow them to finish
+
 ## 1.15.3-2
 
 - Fix the map disappearing in the Home Assistant sidebar: the new vendored MapLibre module's importmap URL missed the ingress prefix, so browsers requested it from Home Assistant and refused its response as JavaScript

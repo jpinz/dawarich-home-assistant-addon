@@ -1,6 +1,6 @@
 # Dawarich Home Assistant Add-on (App)
 
-**Current Dawarich version: 1.15.3** ([release notes](https://github.com/Freika/dawarich/releases/tag/1.15.3))
+**Current Dawarich version: 1.22.0** ([release notes](https://github.com/Freika/dawarich/releases/tag/1.22.0))
 
 [![HA App][ha-app-badge]][ha-app-link]
 
@@ -100,7 +100,7 @@ The same options are also documented in the app's **Documentation** tab ([DOCS.m
 | `time_zone` | `Etc/UTC` | Timezone for displaying dates and times in the UI. Uses standard [tz database names](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (e.g. `America/New_York`, `Europe/Berlin`, `Asia/Tokyo`). |
 | `database_password` | `dawarich` | Password for the internal PostgreSQL database. It is applied when the database is created, and PostgreSQL only accepts connections from inside the container, so changing it later has no effect. |
 | `application_hosts` | `homeassistant.local,localhost` | Comma-separated hostnames/IPs that Rails accepts requests from. Only needed for direct access on port 3000; ingress works regardless. Add your HA IP if you get "blocked host" errors, e.g. `homeassistant.local,localhost,192.168.1.100`. |
-| `background_processing_concurrency` | `5` | Sidekiq worker threads for background jobs like imports, reverse geocoding and stats (1-20). Lower it on a Raspberry Pi 3 (`2`-`3`), raise it for faster imports on strong hardware. |
+| `background_processing_concurrency` | `5` | Background worker threads for jobs like imports, reverse geocoding and stats (1-20). Lower it on a Raspberry Pi 3 (`2`-`3`), raise it for faster imports on strong hardware. |
 
 ### Device Tracking
 
@@ -150,7 +150,7 @@ All data persists across app restarts and updates under `/data/`:
 
 ## Hardware Requirements
 
-The app runs PostgreSQL, Redis, Sidekiq and a Rails app in one container. On a Raspberry Pi 5 it sits between 500 and 800 MB of RAM and idles below 1% CPU, with bursts while background jobs run.
+The app runs PostgreSQL, Redis, a Rails app and its embedded background worker in one container. On a Raspberry Pi 5 it sits between 500 and 800 MB of RAM and idles below 1% CPU, with bursts while background jobs run.
 
 Plan for about 1 GB of free RAM. A 4 GB device such as a Raspberry Pi 4/5 or a Home Assistant Green has room to spare; 2 GB is tight next to Home Assistant itself. Builds are available for `amd64` and `aarch64`.
 

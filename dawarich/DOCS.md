@@ -9,7 +9,7 @@ Everything is bundled into a single app container:
 - **PostgreSQL 17 + PostGIS** — spatial database
 - **Redis 7.4** — cache and job queue
 - **Dawarich** — Rails web application
-- **Sidekiq** — background job processor
+- **Embedded background worker** — processes jobs in the Rails app
 - **Nginx** — ingress reverse proxy
 
 ## Installation
@@ -32,7 +32,7 @@ Everything is bundled into a single app container:
 | `time_zone` | `Etc/UTC` | Timezone for the application (e.g., `America/New_York`, `Europe/Berlin`). |
 | `database_password` | `dawarich` | Internal PostgreSQL password. Not exposed externally. |
 | `application_hosts` | `homeassistant.local,localhost` | Comma-separated hostnames/IPs Rails accepts. Only needed for direct port 3000 access — ingress works without it. Add your HA IP if you get "blocked host" errors. |
-| `background_processing_concurrency` | `5` | Sidekiq worker threads (1-20). Lower on constrained devices like Raspberry Pi 3. |
+| `background_processing_concurrency` | `5` | Background worker threads (1-20). Lower on constrained devices like Raspberry Pi 3. |
 
 ### Device Tracking
 
@@ -192,5 +192,5 @@ To protect data you have not backed up, the import only runs into a database nob
 - Ensure the entities have GPS attributes (latitude/longitude)
 
 ### Data import fails
-- Check Sidekiq is running in the app logs
+- Check that background jobs are running in the app logs
 - Large imports may take significant time — check background job status in the Dawarich UI
